@@ -28,7 +28,7 @@ var keyCodeName = function(keycode) {
 	   }
 };
 
-function createLocationClass (num) {
+function createLocationClass(num) {
 if (num === 1) {
 	return "slot-one-of-nine";
 }
