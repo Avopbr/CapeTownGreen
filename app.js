@@ -3,9 +3,13 @@ var body = document.querySelector("body");
 body.onkeydown = function(e){
 //     e.keyCode - will capture the key codes
       var KeyNames = keyCodeName(e.keyCode);
- 			displayMessage(KeyNames);
-   
+ 			displayMessage(taxiLocationCounter);
 };
+
+		var taxiLocationCounter = 0;
+			taxiLocationCounter++;
+
+
 var keyCodeName = function(keycode) {
 	if(keycode === 39) {
 		return "right";
@@ -23,4 +27,13 @@ var keyCodeName = function(keycode) {
 	    return "";
 	   }
 };
+
+function createLocationClass (num) {
+if (num === 1) {
+	return "slot-one-of-nine";
+}
+
+};
+
+
 
