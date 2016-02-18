@@ -1,9 +1,11 @@
-/*var body = document.querySelector("body");
+var body = document.querySelector("body");
 
 body.onkeydown = function(e){
-    //e.keyCode - will capture the key codes
-   //displayMessage(e.keyCode);*/
-
+//     e.keyCode - will capture the key codes
+      var KeyNames = keyCodeName(e.keyCode);
+ 			displayMessage(KeyNames);
+   
+};
 var keyCodeName = function(keycode) {
 	if(keycode === 39) {
 		return "right";
@@ -17,7 +19,8 @@ var keyCodeName = function(keycode) {
 	if(keycode === 40) {
 		return "down";
 	   }
-	if(keycode === 56||32||64) {
+	else {
 	    return "";
 	   }
 };
+
