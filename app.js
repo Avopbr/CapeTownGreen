@@ -1,19 +1,25 @@
 //find the body tag and store it in a variable called 'body'
 
 var body = document.querySelector("body");
+var taxiLocationCounter = 0;
 
 //listen for the keydown event
 body.onkeydown = function(e){
 
 //     e.keyCode - will capture the key codes
-      var KeyNames = keyCodeName(e.num);
-      	// var locationClass = createLocationClass(e.num);
- 			displayMessage(taxiLocationCounter);
- 				moveForward();
+      var KeyNames = keyCodeName(e.keyCode);
+      	var locationClass = createLocationClass(taxiLocationCounter);
+ 			displayMessage(locationClass);
+ 				taxiLocationCounter++;
+ 					if(KeyNames === "left") {
+ 						moveBackward();
+ 					}
+ 				 		else if(KeyNames === "right") {
+ 				 			moveForward();
+ 				 		}
 };
 
-		var taxiLocationCounter = 1;
-			taxiLocationCounter++;	
+
 
 
 
@@ -33,6 +39,36 @@ var keyCodeName = function(keycode) {
 					else {
 	    				return "";
 	   						}
+};
+
+function createTrafficLightClass(nmbr) {
+if (nmbr === 1) {
+	return "slot-one-of-nine";
+}
+	 else if (nmbr === 2) {
+		return "slot-two-of-nine";
+	}
+	   else if (nmbr === 3) {
+			return "slot-three-of-nine";
+		}
+			else if (nmbr === 4) {
+				return "slot-four-of-nine";
+			}
+				else if (nmbr === 5) {
+					return "slot-five-of-nine";
+				}
+					else if (nmbr === 6) {
+						return "slot-six-of-nine";
+					}
+						else if (nmbr === 7) {
+							return "slot-seven-of-nine";
+						}
+							else if (nmbr === 8) {
+								return "slot-eight-of-nine";
+							}
+								else if(nmbr === 9) {
+									return "slot-nine-of-nine";
+									}
 };
 
 function createLocationClass(num) {
@@ -60,16 +96,26 @@ if (num === 1) {
 							else if (num === 8) {
 								return "slot-eight-of-nine";
 							}
-								else if (num === 9) {
+								else if(num === 9) {
 									return "slot-nine-of-nine";
 									}
 };
 
-function moveForward() {
-	var currentLocation = createLocationClass(taxiLocationCounter);
-		var newLocation = createLocationClass(taxiLocationCounter);
-			moveTaxi(currentLocation, newLocation);
-}
+ function moveForward() {
+ 	var currentLocation = createLocationClass(taxiLocationCounter);
+ 			taxiLocationCounter ++;
+ 		var newLocation = createLocationClass(taxiLocationCounter);
+ 				taxiLocationCounter --;
+ 			moveTaxi(currentLocation, newLocation)
+};
+
+	function moveBackward() {
+		var currentLocation = createLocationClass(taxiLocationCounter);
+ 			taxiLocationCounter --;
+ 		var newLocation = createLocationClass(taxiLocationCounter);
+ 				taxiLocationCounter --;
+ 			moveTaxi(currentLocation, newLocation)
+	}
 
 
 
