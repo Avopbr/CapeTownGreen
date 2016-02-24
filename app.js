@@ -1,15 +1,22 @@
 //find the body tag and store it in a variable called 'body'
 
 var body = document.querySelector("body");
-var taxiLocationCounter = 0;
-
+var taxiLocationCounter = 1;
 //listen for the keydown event
 body.onkeydown = function(e){
 
 //     e.keyCode - will capture the key codes
       var KeyNames = keyCodeName(e.keyCode);
       	var locationClass = createLocationClass(taxiLocationCounter);
- 			displayMessage(locationClass);
+      	var trafficLight = new TrafficLight(taxiLocationCounter); {
+      		if(e.keyCode === 38) {
+      			trafficLight.makeRed();
+      		}
+      		else if(e.keyCode === 40) {
+      			trafficLight.makeGreen();
+      		}
+      	};
+ 			
  				taxiLocationCounter++;
  					if(KeyNames === "left") {
  						moveBackward();
@@ -17,11 +24,8 @@ body.onkeydown = function(e){
  				 		else if(KeyNames === "right") {
  				 			moveForward();
  				 		}
+ displayMessage(locationClass);
 };
-
-
-
-
 
 var keyCodeName = function(keycode) {
 	if(keycode === 39) {
@@ -43,31 +47,31 @@ var keyCodeName = function(keycode) {
 
 function createTrafficLightClass(nmbr) {
 if (nmbr === 1) {
-	return "slot-one-of-nine";
+	return ".one-of-nine";
 }
 	 else if (nmbr === 2) {
-		return "slot-two-of-nine";
+		return ".two-of-nine";
 	}
 	   else if (nmbr === 3) {
-			return "slot-three-of-nine";
+			return ".three-of-nine";
 		}
 			else if (nmbr === 4) {
-				return "slot-four-of-nine";
+				return ".four-of-nine";
 			}
 				else if (nmbr === 5) {
-					return "slot-five-of-nine";
+					return ".five-of-nine";
 				}
 					else if (nmbr === 6) {
-						return "slot-six-of-nine";
+						return ".six-of-nine";
 					}
 						else if (nmbr === 7) {
-							return "slot-seven-of-nine";
+							return ".seven-of-nine";
 						}
 							else if (nmbr === 8) {
-								return "slot-eight-of-nine";
+								return ".eight-of-nine";
 							}
 								else if(nmbr === 9) {
-									return "slot-nine-of-nine";
+									return ".nine-of-nine";
 									}
 };
 
@@ -115,7 +119,50 @@ if (num === 1) {
  		var newLocation = createLocationClass(taxiLocationCounter);
  				taxiLocationCounter --;
  			moveTaxi(currentLocation, newLocation)
+	} 
+
+
+function TrafficLight(x) {
+
+   var className = createTrafficLightClass(x);
+   var trafficLightElement = document.querySelector(className);
+
+	this.makeGreen = function() {
+		trafficLightElement.classList.add("lights-go");
+		trafficLightElement.classList.remove("lights-slowdown");
+		trafficLightElement.classList.remove("lights-stop");
+		
 	}
+	this.makeOrange = function() {
+		trafficLightElement.classList.remove("lights-stop");
+		trafficLightElement.classList.remove("lights-go");
+		trafficLightElement.classList.add("lights-slowdown");
+	}	
+	this.makeRed = function() {
+		trafficLightElement.classList.remove("lights-go");
+		trafficLightElement.classList.remove("lights-slowdown");
+		trafficLightElement.classList.add("lights-stop");
+	}
+	this.color = function() {
+		if (trafficLightElement.classList.contains("lights-go")){
+    return 'green';
+		}
+		else if (trafficLightElement.classList.contains("lights-slowdown")){
+    return 'orange';
+		}
+		else if (trafficLightElement.classList.contains("lights-stop")){
+    return 'red';
+		}
+};
+};
+
+
+
+ // var red = new TrafficLight('lights-stop');
+ // var orange = new TrafficLight('lights-slowdown');
+ // var green = new TrafficLight('lights-go');
+
+
 
 
 
